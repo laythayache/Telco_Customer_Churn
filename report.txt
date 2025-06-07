@@ -1,0 +1,92 @@
+Executive Summary
+We analyzed 7,043 telecom customers across 20 features to understand drivers of churn (~26% churn rate) and establish a baseline performance. Key predictors include tenure, contract type, service offerings (e.g., fiber vs. DSL), payment method, and monthly charges. A naive “always-stay” baseline achieves ~73% accuracy but catches zero churners, highlighting the need for an imbalance-aware model.
+
+1. Data Overview
+Size & Shape: 7,043 records × 21 columns (prior to encoding) analysis.
+
+Feature Types: 4 numeric (SeniorCitizen, tenure, MonthlyCharges, TotalCharges) and 17 categorical (e.g., gender, Contract, PaymentMethod) analysis.
+
+2. Missing Data
+Only TotalCharges had 11 missing values (0.16% of rows), imputed with its median. All other fields were complete analysis.
+
+3. Data Cleaning & Encoding
+Dropped customerID (no predictive value).
+
+Converted TotalCharges to numeric and imputed.
+
+Binary target Churn mapped to 0/1.
+
+One-hot encoded all 17 categorical features, resulting in a high-dimensional feature space (many dummies) analysis.
+
+Scaled all numeric features to mean 0, std 1 via StandardScaler analysis.
+
+4. Class Imbalance
+Stayed (0): 5,174 customers (73.5%)
+
+Churned (1): 1,869 customers (26.5%)
+
+Imbalance ratio ~3:1 analysis.
+
+A naive DummyClassifier that always predicts “Stayed” achieves 73.4% accuracy but 0% recall on churners analysis.
+
+5. Feature Distributions
+Numeric:
+
+tenure, MonthlyCharges, TotalCharges, and SeniorCitizen all exhibit varied spreads and some skew (e.g. tenure skewed toward low values) analysis.
+
+Categorical:
+
+Most customers have phone service, multiple internet options (Fiber, DSL, None), and varying contract lengths. Some dummy columns (e.g. no-phone-service) are rare (<10% of data) analysis.
+
+6. Churn vs. Features
+6.1 Numeric Insights
+Tenure: Non-churners have much higher tenure (mean +0.21 vs. –0.59 standardized).
+
+MonthlyCharges: Churners pay more (mean +0.28 vs. –0.11 standardized).
+
+TotalCharges: Higher for stayers.
+
+SeniorCitizen: Slightly more churn among seniors analysis.
+
+6.2 Categorical Insights
+Contract: Two-year contracts have ~3% churn vs. ~44% for month-to-month.
+
+InternetService: Fiber optic users churn at ~42% vs. ~15% for DSL.
+
+PaymentMethod: Electronic check users churn ~45% vs. ~11% for automatic payments.
+
+PaperlessBilling also correlates positively with churn analysis.
+
+7. Correlation Analysis
+Top positive corr with Churn:
+
+InternetService_Fiber optic (r ≈ +0.31)
+
+PaymentMethod_Electronic check (r ≈ +0.30)
+
+MonthlyCharges (r ≈ +0.19)
+
+PaperlessBilling (r ≈ +0.19)
+
+Top negative corr:
+
+tenure (r ≈ –0.35)
+
+Contract_Two year (r ≈ –0.30)
+
+TotalCharges (r ≈ –0.20) analysis.
+
+Multicollinearity note: MonthlyCharges and TotalCharges correlate ~0.65; consider dropping or regularizing one to avoid redundancy.
+
+8. Baseline Performance
+A DummyClassifier (always “Stayed”):
+
+Confusion matrix:
+[[TN=1035, FP=0],
+ [FN=374,  TP=0]]
+Accuracy: 1035/1409 ≈ 73.4%
+
+Churn recall: 0% analysis.
+
+This sets the minimum bar: any real model must both exceed 73.4% accuracy and start identifying churners (TP > 0, FN ↓).
+

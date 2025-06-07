@@ -1,0 +1,474 @@
+1. RAW DATA INSPECTION
+Shape: (7043, 21)
+
+Info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 7043 entries, 0 to 7042
+Data columns (total 21 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   customerID        7043 non-null   object 
+ 1   gender            7043 non-null   object 
+ 2   SeniorCitizen     7043 non-null   int64  
+ 3   Partner           7043 non-null   object 
+ 4   Dependents        7043 non-null   object 
+ 5   tenure            7043 non-null   int64  
+ 6   PhoneService      7043 non-null   object 
+ 7   MultipleLines     7043 non-null   object 
+ 8   InternetService   7043 non-null   object 
+ 9   OnlineSecurity    7043 non-null   object 
+ 10  OnlineBackup      7043 non-null   object 
+ 11  DeviceProtection  7043 non-null   object 
+ 12  TechSupport       7043 non-null   object 
+ 13  StreamingTV       7043 non-null   object 
+ 14  StreamingMovies   7043 non-null   object 
+ 15  Contract          7043 non-null   object 
+ 16  PaperlessBilling  7043 non-null   object 
+ 17  PaymentMethod     7043 non-null   object 
+ 18  MonthlyCharges    7043 non-null   float64
+ 19  TotalCharges      7043 non-null   object 
+ 20  Churn             7043 non-null   object 
+dtypes: float64(1), int64(2), object(18)
+memory usage: 1.1+ MB
+
+Head:
+   customerID  gender  SeniorCitizen Partner Dependents  tenure PhoneService     MultipleLines InternetService OnlineSecurity OnlineBackup DeviceProtection TechSupport StreamingTV StreamingMovies        Contract PaperlessBilling              PaymentMethod  MonthlyCharges TotalCharges Churn
+0  7590-VHVEG  Female              0     Yes         No       1           No  No phone service             DSL             No          Yes               No          No          No              No  Month-to-month              Yes           Electronic check           29.85        29.85    No
+1  5575-GNVDE    Male              0      No         No      34          Yes                No             DSL            Yes           No              Yes          No          No              No        One year               No               Mailed check           56.95       1889.5    No
+2  3668-QPYBK    Male              0      No         No       2          Yes                No             DSL            Yes          Yes               No          No          No              No  Month-to-month              Yes               Mailed check           53.85       108.15   Yes
+3  7795-CFOCW    Male              0      No         No      45           No  No phone service             DSL            Yes           No              Yes         Yes          No              No        One year               No  Bank transfer (automatic)           42.30      1840.75    No
+4  9237-HQITU  Female              0      No         No       2          Yes                No     Fiber optic             No           No               No          No          No              No  Month-to-month              Yes           Electronic check           70.70       151.65   Yes
+
+2. MISSING VALUES (per column)
+customerID          0
+gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        0
+Churn               0
+
+3. TotalCharges missing before impute: 11
+Dropped customerID, imputed TotalCharges, no more missing.
+
+4. CATEGORICAL FEATURES ONE-HOT ENCODED: ['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod']
+
+5. NUMERIC FEATURES SCALED: ['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges']
+
+6. CHURN DISTRIBUTION
+Churn
+0    5174
+1    1869
+
+7. FEATURE DISTRIBUTIONS
+SeniorCitizen (numeric):
+count    7.043000e+03
+mean    -4.842546e-17
+std      1.000071e+00
+min     -4.399165e-01
+25%     -4.399165e-01
+50%     -4.399165e-01
+75%     -4.399165e-01
+max      2.273159e+00
+
+tenure (numeric):
+count    7.043000e+03
+mean    -2.421273e-17
+std      1.000071e+00
+min     -1.318165e+00
+25%     -9.516817e-01
+50%     -1.372744e-01
+75%      9.214551e-01
+max      1.613701e+00
+
+MonthlyCharges (numeric):
+count    7.043000e+03
+mean    -6.406285e-17
+std      1.000071e+00
+min     -1.545860e+00
+25%     -9.725399e-01
+50%      1.857327e-01
+75%      8.338335e-01
+max      1.794352e+00
+
+TotalCharges (numeric):
+count    7.043000e+03
+mean    -1.488074e-17
+std      1.000071e+00
+min     -9.991203e-01
+25%     -8.298459e-01
+50%     -3.904632e-01
+75%      6.642871e-01
+max      2.826743e+00
+
+gender_Male (binary cat):
+gender_Male
+True     3555
+False    3488
+
+Partner_Yes (binary cat):
+Partner_Yes
+False    3641
+True     3402
+
+Dependents_Yes (binary cat):
+Dependents_Yes
+False    4933
+True     2110
+
+PhoneService_Yes (binary cat):
+PhoneService_Yes
+True     6361
+False     682
+
+MultipleLines_No phone service (binary cat):
+MultipleLines_No phone service
+False    6361
+True      682
+
+MultipleLines_Yes (binary cat):
+MultipleLines_Yes
+False    4072
+True     2971
+
+InternetService_Fiber optic (binary cat):
+InternetService_Fiber optic
+False    3947
+True     3096
+
+InternetService_No (binary cat):
+InternetService_No
+False    5517
+True     1526
+
+OnlineSecurity_No internet service (binary cat):
+OnlineSecurity_No internet service
+False    5517
+True     1526
+
+OnlineSecurity_Yes (binary cat):
+OnlineSecurity_Yes
+False    5024
+True     2019
+
+OnlineBackup_No internet service (binary cat):
+OnlineBackup_No internet service
+False    5517
+True     1526
+
+OnlineBackup_Yes (binary cat):
+OnlineBackup_Yes
+False    4614
+True     2429
+
+DeviceProtection_No internet service (binary cat):
+DeviceProtection_No internet service
+False    5517
+True     1526
+
+DeviceProtection_Yes (binary cat):
+DeviceProtection_Yes
+False    4621
+True     2422
+
+TechSupport_No internet service (binary cat):
+TechSupport_No internet service
+False    5517
+True     1526
+
+TechSupport_Yes (binary cat):
+TechSupport_Yes
+False    4999
+True     2044
+
+StreamingTV_No internet service (binary cat):
+StreamingTV_No internet service
+False    5517
+True     1526
+
+StreamingTV_Yes (binary cat):
+StreamingTV_Yes
+False    4336
+True     2707
+
+StreamingMovies_No internet service (binary cat):
+StreamingMovies_No internet service
+False    5517
+True     1526
+
+StreamingMovies_Yes (binary cat):
+StreamingMovies_Yes
+False    4311
+True     2732
+
+Contract_One year (binary cat):
+Contract_One year
+False    5570
+True     1473
+
+Contract_Two year (binary cat):
+Contract_Two year
+False    5348
+True     1695
+
+PaperlessBilling_Yes (binary cat):
+PaperlessBilling_Yes
+True     4171
+False    2872
+
+PaymentMethod_Credit card (automatic) (binary cat):
+PaymentMethod_Credit card (automatic)
+False    5521
+True     1522
+
+PaymentMethod_Electronic check (binary cat):
+PaymentMethod_Electronic check
+False    4678
+True     2365
+
+PaymentMethod_Mailed check (binary cat):
+PaymentMethod_Mailed check
+False    5431
+True     1612
+
+8. CHURN VS FEATURE
+SeniorCitizen by Churn:
+        count      mean       std       min       25%       50%       75%       max
+Churn                                                                              
+0      5174.0 -0.090688  0.908671 -0.439916 -0.439916 -0.439916 -0.439916  2.273159
+1      1869.0  0.251054  1.182355 -0.439916 -0.439916 -0.439916  2.273159  2.273159
+
+tenure by Churn:
+        count      mean       std       min       25%       50%       75%       max
+Churn                                                                              
+0      5174.0  0.211698  0.981922 -1.318165 -0.707359  0.229209  1.165777  1.613701
+1      1869.0 -0.586048  0.795314 -1.277445 -1.236724 -0.910961 -0.137274  1.613701
+
+MonthlyCharges by Churn:
+        count      mean       std       min       25%       50%       75%       max
+Churn                                                                              
+0      5174.0 -0.116212  1.033393 -1.545860 -1.318194 -0.011190  0.785641  1.794352
+1      1869.0  0.321712  0.819799 -1.525918 -0.286218  0.494827  0.978410  1.781058
+
+TotalCharges by Churn:
+        count      mean       std       min       25%       50%       75%       max
+Churn                                                                              
+0      5174.0  0.119626  1.027584 -0.999120 -0.751549 -0.265944  0.874542  2.821291
+1      1869.0 -0.331163  0.834760 -0.999098 -0.948041 -0.696817  0.021802  2.826743
+
+Churn rate by gender_Male:
+gender_Male
+False    0.269209
+True     0.261603
+
+Churn rate by Partner_Yes:
+Partner_Yes
+False    0.329580
+True     0.196649
+
+Churn rate by Dependents_Yes:
+Dependents_Yes
+False    0.312791
+True     0.154502
+
+Churn rate by PhoneService_Yes:
+PhoneService_Yes
+False    0.249267
+True     0.267096
+
+Churn rate by MultipleLines_No phone service:
+MultipleLines_No phone service
+False    0.267096
+True     0.249267
+
+Churn rate by MultipleLines_Yes:
+MultipleLines_Yes
+False    0.250246
+True     0.286099
+
+Churn rate by InternetService_Fiber optic:
+InternetService_Fiber optic
+False    0.144920
+True     0.418928
+
+Churn rate by InternetService_No:
+InternetService_No
+False    0.318289
+True     0.074050
+
+Churn rate by OnlineSecurity_No internet service:
+OnlineSecurity_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by OnlineSecurity_Yes:
+OnlineSecurity_Yes
+False    0.313296
+True     0.146112
+
+Churn rate by OnlineBackup_No internet service:
+OnlineBackup_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by OnlineBackup_Yes:
+OnlineBackup_Yes
+False    0.291721
+True     0.215315
+
+Churn rate by DeviceProtection_No internet service:
+DeviceProtection_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by DeviceProtection_Yes:
+DeviceProtection_Yes
+False    0.286518
+True     0.225021
+
+Churn rate by TechSupport_No internet service:
+TechSupport_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by TechSupport_Yes:
+TechSupport_Yes
+False    0.311862
+True     0.151663
+
+Churn rate by StreamingTV_No internet service:
+StreamingTV_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by StreamingTV_Yes:
+StreamingTV_Yes
+False    0.243312
+True     0.300702
+
+Churn rate by StreamingMovies_No internet service:
+StreamingMovies_No internet service
+False    0.318289
+True     0.074050
+
+Churn rate by StreamingMovies_Yes:
+StreamingMovies_Yes
+False    0.243795
+True     0.299414
+
+Churn rate by Contract_One year:
+Contract_One year
+False    0.305745
+True     0.112695
+
+Churn rate by Contract_Two year:
+Contract_Two year
+False    0.340501
+True     0.028319
+
+Churn rate by PaperlessBilling_Yes:
+PaperlessBilling_Yes
+False    0.163301
+True     0.335651
+
+Churn rate by PaymentMethod_Credit card (automatic):
+PaymentMethod_Credit card (automatic)
+False    0.296504
+True     0.152431
+
+Churn rate by PaymentMethod_Electronic check:
+PaymentMethod_Electronic check
+False    0.170586
+True     0.452854
+
+Churn rate by PaymentMethod_Mailed check:
+PaymentMethod_Mailed check
+False    0.287424
+True     0.191067
+
+9. CORRELATION MATRIX (top correlations with Churn)
+Churn                                    1.000000
+InternetService_Fiber optic              0.308020
+PaymentMethod_Electronic check           0.301919
+MonthlyCharges                           0.193356
+PaperlessBilling_Yes                     0.191825
+SeniorCitizen                            0.150889
+StreamingTV_Yes                          0.063228
+StreamingMovies_Yes                      0.061382
+MultipleLines_Yes                        0.040102
+PhoneService_Yes                         0.011942
+gender_Male                             -0.008612
+MultipleLines_No phone service          -0.011942
+DeviceProtection_Yes                    -0.066160
+OnlineBackup_Yes                        -0.082255
+PaymentMethod_Mailed check              -0.091683
+PaymentMethod_Credit card (automatic)   -0.134302
+Partner_Yes                             -0.150448
+Dependents_Yes                          -0.164221
+TechSupport_Yes                         -0.164674
+OnlineSecurity_Yes                      -0.171226
+Contract_One year                       -0.177820
+TotalCharges                            -0.199037
+DeviceProtection_No internet service    -0.227890
+OnlineSecurity_No internet service      -0.227890
+TechSupport_No internet service         -0.227890
+StreamingTV_No internet service         -0.227890
+InternetService_No                      -0.227890
+StreamingMovies_No internet service     -0.227890
+OnlineBackup_No internet service        -0.227890
+Contract_Two year                       -0.302253
+tenure                                  -0.352229
+
+Full correlation matrix:
+                                       SeniorCitizen    tenure  MonthlyCharges  TotalCharges     Churn  gender_Male  Partner_Yes  Dependents_Yes  PhoneService_Yes  MultipleLines_No phone service  MultipleLines_Yes  InternetService_Fiber optic  InternetService_No  OnlineSecurity_No internet service  OnlineSecurity_Yes  OnlineBackup_No internet service  OnlineBackup_Yes  DeviceProtection_No internet service  DeviceProtection_Yes  TechSupport_No internet service  TechSupport_Yes  StreamingTV_No internet service  StreamingTV_Yes  StreamingMovies_No internet service  StreamingMovies_Yes  Contract_One year  Contract_Two year  PaperlessBilling_Yes  PaymentMethod_Credit card (automatic)  PaymentMethod_Electronic check  PaymentMethod_Mailed check
+SeniorCitizen                               1.000000  0.016567        0.220173      0.102652  0.150889    -0.001874     0.016479       -0.211185          0.008576                       -0.008576           0.142948                     0.255338           -0.182742                           -0.182742           -0.038653                         -0.182742          0.066572                             -0.182742              0.059428                        -0.182742        -0.060625                        -0.182742         0.105378                            -0.182742             0.120176          -0.046262          -0.117000              0.156530                              -0.024135                        0.171718                   -0.153477
+tenure                                      0.016567  1.000000        0.247900      0.825464 -0.352229     0.005106     0.379697        0.159712          0.008448                       -0.008448           0.331941                     0.019720           -0.039062                           -0.039062            0.327203                         -0.039062          0.360277                             -0.039062              0.360653                        -0.039062         0.324221                        -0.039062         0.279756                            -0.039062             0.286111           0.202570           0.558533              0.006152                               0.233006                       -0.208363                   -0.233852
+MonthlyCharges                              0.220173  0.247900        1.000000      0.650864  0.193356    -0.014569     0.096848       -0.113890          0.247398                       -0.247398           0.490434                     0.787066           -0.763557                           -0.763557            0.296594                         -0.763557          0.441780                             -0.763557              0.482692                        -0.763557         0.338304                        -0.763557         0.629603                            -0.763557             0.627429           0.004904          -0.074681              0.352150                               0.030550                        0.271625                   -0.377437
+TotalCharges                                0.102652  0.825464        0.650864      1.000000 -0.199037    -0.000002     0.318364        0.063593          0.113013                       -0.113013           0.468705                     0.361045           -0.374706                           -0.374706            0.412091                         -0.374706          0.509607                             -0.374706              0.522374                        -0.374706         0.432329                        -0.374706         0.515279                            -0.374706             0.519884           0.170649           0.356226              0.158055                               0.182745                       -0.059971                   -0.294814
+Churn                                       0.150889 -0.352229        0.193356     -0.199037  1.000000    -0.008612    -0.150448       -0.164221          0.011942                       -0.011942           0.040102                     0.308020           -0.227890                           -0.227890           -0.171226                         -0.227890         -0.082255                             -0.227890             -0.066160                        -0.227890        -0.164674                        -0.227890         0.063228                            -0.227890             0.061382          -0.177820          -0.302253              0.191825                              -0.134302                        0.301919                   -0.091683
+gender_Male                                -0.001874  0.005106       -0.014569     -0.000002 -0.008612     1.000000    -0.001808        0.010517         -0.006488                        0.006488          -0.008414                    -0.011286            0.006026                            0.006026           -0.017021                          0.006026         -0.013773                              0.006026             -0.002105                         0.006026        -0.009212                         0.006026        -0.008393                             0.006026            -0.010487           0.008026          -0.003695             -0.011754                               0.001215                        0.000752                    0.013744
+Partner_Yes                                 0.016479  0.379697        0.096848      0.318364 -0.150448    -0.001808     1.000000        0.452676          0.017706                       -0.017706           0.142057                     0.000304            0.000615                            0.000615            0.143106                          0.000615          0.141498                              0.000615              0.153786                         0.000615         0.119999                         0.000615         0.124666                             0.000615             0.117412           0.082783           0.248091             -0.014877                               0.082029                       -0.083852                   -0.095125
+Dependents_Yes                             -0.211185  0.159712       -0.113890      0.063593 -0.164221     0.010517     0.452676        1.000000         -0.001762                        0.001762          -0.024526                    -0.165818            0.139812                            0.139812            0.080972                          0.139812          0.023671                              0.139812              0.013963                         0.139812         0.063268                         0.139812        -0.016558                             0.139812            -0.039741           0.068368           0.204613             -0.111377                               0.060267                       -0.150642                    0.059071
+PhoneService_Yes                            0.008576  0.008448        0.247398      0.113013  0.011942    -0.006488     0.017706       -0.001762          1.000000                       -1.000000           0.279690                     0.289999            0.172209                            0.172209           -0.092893                          0.172209         -0.052312                              0.172209             -0.071227                         0.172209        -0.096340                         0.172209        -0.022574                             0.172209            -0.032959          -0.002791           0.003519              0.016505                              -0.007721                        0.003062                   -0.003319
+MultipleLines_No phone service             -0.008576 -0.008448       -0.247398     -0.113013 -0.011942     0.006488    -0.017706        0.001762         -1.000000                        1.000000          -0.279690                    -0.289999           -0.172209                           -0.172209            0.092893                         -0.172209          0.052312                             -0.172209              0.071227                        -0.172209         0.096340                        -0.172209         0.022574                            -0.172209             0.032959           0.002791          -0.003519             -0.016505                               0.007721                       -0.003062                    0.003319
+MultipleLines_Yes                           0.142948  0.331941        0.490434      0.468705  0.040102    -0.008414     0.142057       -0.024526          0.279690                       -0.279690           1.000000                     0.366083           -0.210564                           -0.210564            0.098108                         -0.210564          0.202237                             -0.210564              0.201137                        -0.210564         0.100571                        -0.210564         0.257152                            -0.210564             0.258751          -0.003794           0.106253              0.163530                               0.060048                        0.083618                   -0.227206
+InternetService_Fiber optic                 0.255338  0.019720        0.787066      0.361045  0.308020    -0.011286     0.000304       -0.165818          0.289999                       -0.289999           0.366083                     1.000000           -0.465793                           -0.465793           -0.030696                         -0.465793          0.165651                             -0.465793              0.176049                        -0.465793        -0.020492                        -0.465793         0.329349                            -0.465793             0.322923          -0.076324          -0.211526              0.326853                              -0.050077                        0.336410                   -0.306834
+InternetService_No                         -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+OnlineSecurity_No internet service         -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+OnlineSecurity_Yes                         -0.038653  0.327203        0.296594      0.412091 -0.171226    -0.017021     0.143106        0.080972         -0.092893                        0.092893           0.098108                    -0.030696           -0.333403                           -0.333403            1.000000                         -0.333403          0.283832                             -0.333403              0.275438                        -0.333403         0.354931                        -0.333403         0.176207                            -0.333403             0.187398           0.100162           0.191773             -0.003636                               0.115721                       -0.112338                   -0.080798
+OnlineBackup_No internet service           -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+OnlineBackup_Yes                            0.066572  0.360277        0.441780      0.509607 -0.082255    -0.013773     0.141498        0.023671         -0.052312                        0.052312           0.202237                     0.165651           -0.381593                           -0.381593            0.283832                         -0.381593          1.000000                             -0.381593              0.303546                        -0.381593         0.294233                        -0.381593         0.282106                            -0.381593             0.274501           0.083722           0.111400              0.126735                               0.090785                       -0.000408                   -0.174164
+DeviceProtection_No internet service       -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+DeviceProtection_Yes                        0.059428  0.360653        0.482692      0.522374 -0.066160    -0.002105     0.153786        0.013963         -0.071227                        0.071227           0.201137                     0.176049           -0.380754                           -0.380754            0.275438                         -0.380754          0.303546                             -0.380754              1.000000                        -0.380754         0.333313                        -0.380754         0.390874                            -0.380754             0.402111           0.102495           0.165096              0.103797                               0.111554                       -0.003351                   -0.187373
+TechSupport_No internet service            -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+TechSupport_Yes                            -0.060625  0.324221        0.338304      0.432329 -0.164674    -0.009212     0.119999        0.063268         -0.096340                        0.096340           0.100571                    -0.020492           -0.336298                           -0.336298            0.354931                         -0.336298          0.294233                             -0.336298              0.333313                        -0.336298         1.000000                        -0.336298         0.278070                            -0.336298             0.279358           0.095775           0.240824              0.037880                               0.117272                       -0.114839                   -0.085509
+StreamingTV_No internet service            -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+StreamingTV_Yes                             0.105378  0.279756        0.629603      0.515279  0.063228    -0.008393     0.124666       -0.016558         -0.022574                        0.022574           0.257152                     0.329349           -0.415552                           -0.415552            0.176207                         -0.415552          0.282106                             -0.415552              0.390874                        -0.415552         0.278070                        -0.415552         1.000000                            -0.415552             0.533094           0.061612           0.072049              0.223841                               0.040433                        0.144626                   -0.247742
+StreamingMovies_No internet service        -0.182742 -0.039062       -0.763557     -0.374706 -0.227890     0.006026     0.000615        0.139812          0.172209                       -0.172209          -0.210564                    -0.465793            1.000000                            1.000000           -0.333403                          1.000000         -0.381593                              1.000000             -0.380754                         1.000000        -0.336298                         1.000000        -0.415552                             1.000000            -0.418675           0.038004           0.218278             -0.321013                               0.001030                       -0.284917                    0.321361
+StreamingMovies_Yes                         0.120176  0.286111        0.627429      0.519884  0.061382    -0.010487     0.117412       -0.039741         -0.032959                        0.032959           0.258751                     0.322923           -0.418675                           -0.418675            0.187398                         -0.418675          0.274501                             -0.418675              0.402111                        -0.418675         0.279358                        -0.418675         0.533094                            -0.418675             1.000000           0.064926           0.073960              0.211716                               0.048575                        0.137966                   -0.250595
+Contract_One year                          -0.046262  0.202570        0.004904      0.170649 -0.177820     0.008026     0.082783        0.068368         -0.002791                        0.002791          -0.003794                    -0.076324            0.038004                            0.038004            0.100162                          0.038004          0.083722                              0.038004              0.102495                         0.038004         0.095775                         0.038004         0.061612                             0.038004             0.064926           1.000000          -0.289510             -0.051391                               0.067589                       -0.109130                   -0.000116
+Contract_Two year                          -0.117000  0.558533       -0.074681      0.356226 -0.302253    -0.003695     0.248091        0.204613          0.003519                       -0.003519           0.106253                    -0.211526            0.218278                            0.218278            0.191773                          0.218278          0.111400                              0.218278              0.165096                         0.218278         0.240824                         0.218278         0.072049                             0.218278             0.073960          -0.289510           1.000000             -0.147889                               0.173265                       -0.282138                   -0.004705
+PaperlessBilling_Yes                        0.156530  0.006152        0.352150      0.158055  0.191825    -0.011754    -0.014877       -0.111377          0.016505                       -0.016505           0.163530                     0.326853           -0.321013                           -0.321013           -0.003636                         -0.321013          0.126735                             -0.321013              0.103797                        -0.321013         0.037880                        -0.321013         0.223841                            -0.321013             0.211716          -0.051391          -0.147889              1.000000                              -0.013589                        0.208865                   -0.205398
+PaymentMethod_Credit card (automatic)      -0.024135  0.233006        0.030550      0.182745 -0.134302     0.001215     0.082029        0.060267         -0.007721                        0.007721           0.060048                    -0.050077            0.001030                            0.001030            0.115721                          0.001030          0.090785                              0.001030              0.111554                         0.001030         0.117272                         0.001030         0.040433                             0.001030             0.048575           0.067589           0.173265             -0.013589                               1.000000                       -0.373322                   -0.286049
+PaymentMethod_Electronic check              0.171718 -0.208363        0.271625     -0.059971  0.301919     0.000752    -0.083852       -0.150642          0.003062                       -0.003062           0.083618                     0.336410           -0.284917                           -0.284917           -0.112338                         -0.284917         -0.000408                             -0.284917             -0.003351                        -0.284917        -0.114839                        -0.284917         0.144626                            -0.284917             0.137966          -0.109130          -0.282138              0.208865                              -0.373322                        1.000000                   -0.387372
+PaymentMethod_Mailed check                 -0.153477 -0.233852       -0.377437     -0.294814 -0.091683     0.013744    -0.095125        0.059071         -0.003319                        0.003319          -0.227206                    -0.306834            0.321361                            0.321361           -0.080798                          0.321361         -0.174164                              0.321361             -0.187373                         0.321361        -0.085509                         0.321361        -0.247742                             0.321361            -0.250595          -0.000116          -0.004705             -0.205398                              -0.286049                       -0.387372                    1.000000
+
+10. BASELINE CONFUSION MATRIX (DummyClassifier)
+Labels [Stayed, Churned]
+[[1035    0]
+ [ 374    0]]
+
