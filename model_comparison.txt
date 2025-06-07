@@ -1,0 +1,196 @@
+=== Logistic_L1 ===
+Accuracy:  0.725
+Precision: 0.489
+Recall:    0.799
+F1 Score:  0.607
+ROC AUC:   0.829
+Confusion Matrix:
+[[723 312]
+ [ 75 299]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.70      0.79      1035
+           1       0.49      0.80      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.70      1409
+weighted avg       0.80      0.73      0.74      1409
+Coefficients:
+  scale_tenure__tenure: -0.949
+  pca_charge__pca0: 0.429
+  pass_cat__Contract_One year: -0.945
+  pass_cat__Contract_Two year: -1.872
+  pass_cat__InternetService_Fiber optic: 0.628
+  pass_cat__PaymentMethod_Electronic check: 0.500
+  pass_cat__PaperlessBilling_Yes: 0.482
+
+
+=== Logistic_L2 ===
+Accuracy:  0.725
+Precision: 0.489
+Recall:    0.799
+F1 Score:  0.607
+ROC AUC:   0.829
+Confusion Matrix:
+[[723 312]
+ [ 75 299]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.70      0.79      1035
+           1       0.49      0.80      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.70      1409
+weighted avg       0.80      0.73      0.74      1409
+Coefficients:
+  scale_tenure__tenure: -0.951
+  pca_charge__pca0: 0.428
+  pass_cat__Contract_One year: -0.944
+  pass_cat__Contract_Two year: -1.855
+  pass_cat__InternetService_Fiber optic: 0.632
+  pass_cat__PaymentMethod_Electronic check: 0.502
+  pass_cat__PaperlessBilling_Yes: 0.483
+
+
+=== RandomForest ===
+Accuracy:  0.737
+Precision: 0.504
+Recall:    0.572
+F1 Score:  0.536
+ROC AUC:   0.789
+Confusion Matrix:
+[[824 211]
+ [160 214]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.80      0.82      1035
+           1       0.50      0.57      0.54       374
+
+    accuracy                           0.74      1409
+   macro avg       0.67      0.68      0.68      1409
+weighted avg       0.75      0.74      0.74      1409
+
+
+=== XGBoost ===
+Accuracy:  0.752
+Precision: 0.526
+Recall:    0.679
+F1 Score:  0.593
+ROC AUC:   0.819
+Confusion Matrix:
+[[806 229]
+ [120 254]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.87      0.78      0.82      1035
+           1       0.53      0.68      0.59       374
+
+    accuracy                           0.75      1409
+   macro avg       0.70      0.73      0.71      1409
+weighted avg       0.78      0.75      0.76      1409
+
+
+=== DecisionTree ===
+Accuracy:  0.707
+Precision: 0.455
+Recall:    0.532
+F1 Score:  0.491
+ROC AUC:   0.656
+Confusion Matrix:
+[[797 238]
+ [175 199]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.82      0.77      0.79      1035
+           1       0.46      0.53      0.49       374
+
+    accuracy                           0.71      1409
+   macro avg       0.64      0.65      0.64      1409
+weighted avg       0.72      0.71      0.71      1409
+
+
+=== AdaBoost ===
+Accuracy:  0.725
+Precision: 0.489
+Recall:    0.781
+F1 Score:  0.601
+ROC AUC:   0.833
+Confusion Matrix:
+[[730 305]
+ [ 82 292]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      0.71      0.79      1035
+           1       0.49      0.78      0.60       374
+
+    accuracy                           0.73      1409
+   macro avg       0.69      0.74      0.70      1409
+weighted avg       0.79      0.73      0.74      1409
+
+
+=== GradientBoosting ===
+Accuracy:  0.747
+Precision: 0.516
+Recall:    0.770
+F1 Score:  0.618
+ROC AUC:   0.839
+Confusion Matrix:
+[[765 270]
+ [ 86 288]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      0.74      0.81      1035
+           1       0.52      0.77      0.62       374
+
+    accuracy                           0.75      1409
+   macro avg       0.71      0.75      0.71      1409
+weighted avg       0.80      0.75      0.76      1409
+
+
+=== GaussianNB ===
+Accuracy:  0.679
+Precision: 0.446
+Recall:    0.869
+F1 Score:  0.590
+ROC AUC:   0.819
+Confusion Matrix:
+[[632 403]
+ [ 49 325]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.61      0.74      1035
+           1       0.45      0.87      0.59       374
+
+    accuracy                           0.68      1409
+   macro avg       0.69      0.74      0.66      1409
+weighted avg       0.80      0.68      0.70      1409
+
+
+=== SVC ===
+Accuracy:  0.737
+Precision: 0.503
+Recall:    0.807
+F1 Score:  0.620
+ROC AUC:   0.828
+Confusion Matrix:
+[[737 298]
+ [ 72 302]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.71      0.80      1035
+           1       0.50      0.81      0.62       374
+
+    accuracy                           0.74      1409
+   macro avg       0.71      0.76      0.71      1409
+weighted avg       0.80      0.74      0.75      1409
+
+
